@@ -1,38 +1,29 @@
 import numpy as np
+from scipy.special import erf
 import matplotlib.pyplot as plt
-import matplotlib.animation as animation
+import imageio
+def make_gif(filename,gifname):
 
+    data=np.load(filename)
+    T=data["T"]
 
-# Load data
-data=np.load("rt_synthetic_sample.npz")
-T=data["T"]
+    frames=[]
 
-# Figure setup
-fig,ax=plt.subplots()
-im=ax.imshow(T[0],origin="lower",cmap="inferno")
-ax.set_title("Rayleigh-Taylor Synthetic Simulation")
-plt.colorbar(im,ax=ax)
+    for k in range(T.shape[0]):
 
-# Animation update function
+        plt.figure(figsize=(4,4))
+        plt.imshow(T[k],origin="lower",cmap="inferno")
+        plt.colorbar()
+        plt.title(f"Frame {k}")
+        plt.tight_layout()
 
-def update(frame):
-    im.set_array(T[frame])
-    ax.set_title(f"Time step {frame}")
-    return [im]
+        plt.savefig("temp.png")
+        plt.close()
 
+        frames.append(imageio.imread("temp.png"))
 
-# Create animation
-
-ani=animation.FuncAnimation(
-    fig,
-    update,
-    frames=T.shape[0],
-    interval=50
-)
-
-
-# Save GIF
-
-ani.save("rt_synthetic_simulation.gif",writer="pillow")
-
-print("GIF saved as rt_synthetic_simulation.gif")
+    imageio.mimsave(gifname,frames,fps=10)
+if __name__=="__main__":
+    # generate_dataset()
+    # make_gif("simulation_fast0.npz","simulation_fast0.gif")
+    make_gif("simulation_fast1.npz","simulation_fast1.gif")
