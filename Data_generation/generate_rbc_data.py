@@ -404,8 +404,8 @@ def simulate(Ra,Pr,M,N,ng,Lx,Ly,dt,n_steps,save_every):
 
 def generate_dataset():
 
-    M=64
-    N=64
+    M=128
+    N=128
     
     ng=1
 
@@ -414,7 +414,7 @@ def generate_dataset():
 
     Pr=1.0
     dt=1e-6
-    n_steps=700
+    n_steps=23000
     save_every=200   # saves 100 frames approx
 
     Ra_values=[1e4,3e4]   # only 2 Ra
