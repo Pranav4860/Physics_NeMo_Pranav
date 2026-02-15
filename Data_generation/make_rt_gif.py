@@ -25,5 +25,5 @@ def make_gif(filename,gifname):
     imageio.mimsave(gifname,frames,fps=10)
 if __name__=="__main__":
     # generate_dataset()
-    # make_gif("simulation_fast0.npz","simulation_fast0.gif")
-    make_gif("simulation_fast1.npz","simulation_fast1.gif")
+    make_gif("simulation_fast0.npz","simulation_0.gif")
+    make_gif("simulation_fast1.npz","simulation_1.gif")
